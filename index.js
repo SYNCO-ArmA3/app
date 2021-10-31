@@ -22,5 +22,5 @@ app.listen(process.env.PORT, () => {
 });
 
 setInterval(() => {
-    http.get("http://dhplb.glitch.me/");
+    http.get("https://shrub-tarry-gladiolus.glitch.me/");
 }, 5000);
