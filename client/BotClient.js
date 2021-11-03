@@ -1,7 +1,4 @@
 const { Client, Intents } = require("discord.js");
-const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
-});
 const { readdirSync } = require("fs");
 const util = require("../util.js");
 
@@ -19,7 +16,9 @@ exports.BotClient = class BotClient {
       }
 
       // Create a new client.
-      this.client = new Client();
+      this.client = new Client({
+        intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+      });
 
       this.start_processing_events();
 
