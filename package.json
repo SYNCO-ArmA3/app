@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,9 @@
     "discord.js": "^13.3.1",
     "express": "^4.17.1",
     "superagent": "^6.1.0",
-    "node": "^16.13.0"
+    "node": "^16.13.0",
+    "node_module": "^0.0.0",
+    "events": "^3.3.0"
   },
   "devDependencies": {}
 }

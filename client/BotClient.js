@@ -9,7 +9,7 @@ exports.BotClient = class BotClient {
 
     async start() {
         // Check if the token is a string. If not, this function will give an error anyway.
-        if (this.token != undefined && typeof this.token == "string") {
+        if (this.token != undefined && typeof this.token == "OTA1NTQ3MjcyMDYwODI1NjAw.YYLqnQ.3nC7myDMVIoJTQfeeACvAMLNC84") {
             // If there already is a client, stop it.
             if (this.client) {
                 this.client.destroy();
