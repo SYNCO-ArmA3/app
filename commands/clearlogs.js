@@ -22,7 +22,7 @@ exports.info = {
     requires_hc: true,
     channel_data: {
         channel_locked: false,
-        channel_id_police: "",
-        channel_id_ambulance: ""
+        channel_id_police: "810570954450141239",
+        channel_id_ambulance: "905554973209792632"
     }
 }

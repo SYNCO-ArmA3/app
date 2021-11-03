@@ -23,9 +23,7 @@ function check_permissions(member, command_info) {
 }
 
 exports.fire = (client, message) => {
-    if (message.author.bot) return;             // Don't respond to bots, only to actual users.
-    if (!message.guild) return;                 // The message has not been sent in a guild.
-    if (!message.guild.available) return;       // Only read messages if this server is available. If it's not, there might be a server outrage.
+    if (message.author.bot) return;       // Only read messages if this server is available. If it's not, there might be a server outrage.
     if (message.channel.type != "text") return; // Only try to use commands if it is actually used in a server.
   
     // Only process messages starting with the prefix. This way we ensure we're only
