@@ -3,7 +3,7 @@ const util = require("../util.js");
 
 exports.execute = async (client, message, args, is_police) => {
     if (args.length != 1) {
-        message.reply("Please, specify your username.");
+        message.reply("Devi specificare il nome utente.");
 
         return;
     }
@@ -11,7 +11,7 @@ exports.execute = async (client, message, args, is_police) => {
     const roblox_username = await util.get_username_if_exists(args[0]);
 
     if (!roblox_username) {
-        message.reply("That user does not exist! Are you sure you have entered the right name?");
+        message.reply("Utente non trovato.");
 
         return;
     }
@@ -27,9 +27,9 @@ exports.execute = async (client, message, args, is_police) => {
         );
       
        if (card) {
-          message.reply(`These are your hours and minutes patrolled:\n\n${card.desc}`);
+          message.reply(`Ecco il tempo totalizzato dall'operatore:\n\n${card.desc}`);
        } else {
-          message.reply("I could not find your patrol data. Are you sure you have logged your patrols?");
+          message.reply("Nessun risultato trovato.");
        }
     } else {
         card = await trello.get_card_by_name(
@@ -40,9 +40,9 @@ exports.execute = async (client, message, args, is_police) => {
         );
       
         if (card) {
-           message.reply(`These are your hours and minutes patrolled:\n\n${card.desc}`);
+           message.reply(`Ecco il tempo totalizzato:\n\n${card.desc}`);
         } else {
-           message.reply("I could not find your patrol data. Are you sure you have logged your patrols?");
+           message.reply("Nessun risultato trovato.");
         }
     }
     

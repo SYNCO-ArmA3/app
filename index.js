@@ -9,6 +9,8 @@ const http = require('http');
 const express = require('express');
 const app = express();
 
+app.use(express.static("public"))
+
 app.get("/", (request, response) => {
     const date = new Date();
     const format = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getMinutes()}`;

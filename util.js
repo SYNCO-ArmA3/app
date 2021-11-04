@@ -9,17 +9,8 @@ exports.init = (_client) => {
 
 exports.process_error = async (error) => {
     // Output the error.
-    console.error(error.stack);
-
-    if (client) {
-        // Notify Valatos about the error by also sending the error via a DM to him.
-        const valatos = await client.fetchUser(process.env.VALATOS_USER_ID);
-
-        if (valatos) {
-            valatos.send(`An error has occured!\n\n\`\`\`${error.stack}\`\`\``);
-        }
-    }
-}
+    console.error(error.stack)
+};
 
 exports.get_username_if_exists = async (username) => {
     const url = `https://api.roblox.com/users/get-by-username?username=${username}`;

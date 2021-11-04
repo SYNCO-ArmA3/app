@@ -115,7 +115,7 @@ exports.execute = async (client, message, args, is_police) => {
     {
         message.react("\u26A0"); // :warning:
 
-        message.reply("I'm sorry, but something went wrong processing your patrol log. Please try again later, because we might have exceeded a ratelimit. If it keeps occuring, please message Valatos.");
+        message.reply("Errore. In caso di continuità, contattare Marcoolono.");
     } else {
         message.react("\u2705"); // :white_check_mark:
     }
