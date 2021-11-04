@@ -3,13 +3,13 @@ const util = require("../util.js");
 
 exports.execute = async (client, message, args, is_police) => {
     if (args.length != 3) {
-        message.reply("Please, specify your username, the hours patrolled and the minutes patrolled." +
+        message.reply("Per cortesia, specifica il tuo username roblox, le ore ed i minuti che hai compiuto nel pattugliamento." +
                       "\n" +
-                      "If you have not patrolled one hour, but some minutes, give the hours as zero" +
+                      "Se hai compiuto un turno la cui durata e' inferiore ad un'ora, scrivi 0 nelle ore." +
                       "\n\n" +
-                      `Example usage: ${process.env.PREFIX}logpatrol Username 0 0` +
+                      `Esempio: ${process.env.PREFIX}logpatrol Username 0 30` +
                       "\n" +
-                      "Where 'Username' is your Roblox username. The first zero stands for the amount of hours, and the second one for the amount of minutes.");
+                      "'Username' sta per il tuo esatto nome roblox, la seconda opzione sta per le ore e la terza per i minuti totalizzati");
 
         return;
     }
@@ -19,7 +19,7 @@ exports.execute = async (client, message, args, is_police) => {
 
     // The user does not exist.
     if (!roblox_username) {
-        message.reply("That user does not exist! Are you sure you have entered the right name?");
+        message.reply("Questo utente non esiste! Sicuro di aver inserito correttamente il nome?");
 
         return;
     }
@@ -29,19 +29,19 @@ exports.execute = async (client, message, args, is_police) => {
     let minutes_patrolled = parseInt(args[2]);
 
     if (Number.isNaN(hours_patrolled) || Number.isNaN(minutes_patrolled)) {
-        message.reply("Please, actually specify the hours and minutes in just numbers. First the hours, then the minutes!");
+        message.reply("Devi usare numeri per indicare le ore ed i minuti!");
 
         return;
     }
 
     if (minutes_patrolled > 60 || minutes_patrolled < 0) {
-        message.reply("I'm sorry, but minutes only go up to and including sixty, and cannot be lower than zero!")
+        message.reply("I minuti non possono essere ne' inferiori a zero ne' superiori a sessanta..")
 
         return;
     }
 
     if (hours_patrolled < 0) {
-        message.reply("I'm sorry, but hours cannot go below zero!");
+        message.reply("Non esistono ore inferiori a zero, inserisci le ore le quali hai totalizzato!");
 
         return;
     }
@@ -67,7 +67,7 @@ exports.execute = async (client, message, args, is_police) => {
     let response = null;
 
     if (!existing_card) {
-        const description = `Hours patrolled: ${hours_patrolled}\nMinutes patrolled: ${minutes_patrolled}`;
+        const description = `Ore totalizzate: ${hours_patrolled}\nMinuti Totalizzati: ${minutes_patrolled}`;
 
         if (is_police) {
             response = await trello.create_card(process.env.TRELLO_LIST_ID_POLICE, {
@@ -84,11 +84,11 @@ exports.execute = async (client, message, args, is_police) => {
         const old_description = existing_card.desc;
 
         // Parse the description so that we only get the hours patrolled in a number.
-        const old_hours_patrolled   = parseInt(old_description.split("Hours patrolled: ")[1] // Remove the "Hours patrolled: " in front of the hours.
+        const old_hours_patrolled   = parseInt(old_description.split("Ore totalizzate: ")[1] // Remove the "Hours patrolled: " in front of the hours.
                                                               .split("\n"));                 // Also remove everything that comes on a new line.
 
         // Do the same to minutes as for hours.
-        const old_minutes_patrolled = parseInt(old_description.split("Minutes patrolled: ")[1] // Remove the "Minutes patrolled: " in front of the minutes.
+        const old_minutes_patrolled = parseInt(old_description.split("Minuti totalizzati: ")[1] // Remove the "Minutes patrolled: " in front of the minutes.
                                                               .split("\n"));                   // Also remove everything that comes on a new line.
 
         if (Number.isNaN(old_hours_patrolled) || Number.isNaN(old_minutes_patrolled)) {
@@ -104,7 +104,7 @@ exports.execute = async (client, message, args, is_police) => {
             new_minutes_patrolled -= 60;
         }
 
-        const description = `Hours patrolled: ${new_hours_patrolled}\nMinutes patrolled: ${new_minutes_patrolled}`;
+        const description = `Ore totalizzate: ${new_hours_patrolled}\nMinuti totalizzati: ${new_minutes_patrolled}`;
 
         response = await trello.update_card(existing_card.id, {
             desc: description
@@ -125,7 +125,7 @@ exports.info = {
     requires_hc: false,
     channel_data: {
         channel_locked: true,
-        channel_id_police: "557183158924214301",
+        channel_id_police: "810570954450141239",
         channel_id_ambulance: "697071975822000169"
     }
 }

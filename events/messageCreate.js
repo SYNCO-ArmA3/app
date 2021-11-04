@@ -23,9 +23,6 @@ function check_permissions(member, command_info) {
 }
 
 exports.fire = (client, message) => {
-    if (message.author.bot) return;       // Only read messages if this server is available. If it's not, there might be a server outrage.
-    if (message.channel.type != "text") return; // Only try to use commands if it is actually used in a server.
-  
     // Only process messages starting with the prefix. This way we ensure we're only
     // processing commands.
     if (message.content.startsWith(process.env.PREFIX)) { 
@@ -54,7 +51,7 @@ exports.fire = (client, message) => {
                     // if the user is allowed to execute the command there. If not,
                     // inform the user, and stop processing this message.
                     if (command_file.info.channel_data.channel_locked && message.channel.id != command_file.info.channel_data.channel_id_police && message.channel.id != command_file.info.channel_data.channel_id_ambulance) {
-                        message.reply(`This command cannot be used in this channel! Please, move to the designated channel!`);
+                        message.reply(`Non puoi usare questo comando qui!`);
 
                         message.react("\u26A0"); // :warning:
                       
@@ -70,10 +67,10 @@ exports.fire = (client, message) => {
                     // to catch errors happening inside the commands.
 
                     const channel_category = message.channel.parent.type == "category";
-                    const is_police = message.channel.parent.id == "493820162529689603";
+                    const is_police = message.channel.parent.id == "810570954450141237";
 
-                    if (!is_police && message.channel.parent.id != "577605423922675752") {
-                        message.reply("The bot only works in a channel that is located in the Ambulance or Police categories.");
+                    if (!is_police && message.channel.parent.id != "810570954450141237") {
+                        message.reply("Usa questo comando nella categoria relativa alla Polizia Penitenziaria, sezione richiesta turni.");
                         
                         message.react("\u26A0"); // :warning:
                       
@@ -86,7 +83,7 @@ exports.fire = (client, message) => {
                         util.process_error(error);
                     }
                 } else {
-                    message.reply("You are not allowed to use that command, because it is locked to the High Command only.");
+                    message.reply("Permessi insufficienti!");
                   
                     message.react("\u26A0"); // :warning:
                 }
